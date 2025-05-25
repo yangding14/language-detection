@@ -1,14 +1,17 @@
 # 🌍 Language Detection App
 
-A simple and elegant language detection application built with Gradio frontend and a modular backend designed for easy integration of ML/NLP models.
+A powerful and elegant language detection application built with Gradio frontend and a modular backend featuring multiple state-of-the-art ML models.
 
 ## ✨ Features
 
 - **Clean Gradio Interface**: Simple, intuitive web interface for language detection
+- **Multiple Models**: Choose between different language detection models
 - **Modular Backend**: Easy-to-extend architecture for plugging in your own ML models
 - **Real-time Detection**: Instant language detection with confidence scores
 - **Multiple Predictions**: Shows top 5 language predictions with confidence levels
+- **100+ Languages**: Support for major world languages
 - **Example Texts**: Pre-loaded examples in various languages for testing
+- **Model Switching**: Seamlessly switch between different models
 - **Extensible**: Abstract base class for implementing custom models
 
 ## 🚀 Quick Start
@@ -34,6 +37,9 @@ pip install -r requirements.txt
 ```bash
 # Run tests to verify everything works
 python test_app.py
+
+# Test the SongJuNN model specifically
+python test_songju_model.py
 ```
 
 ### 3. Launch the App
@@ -58,14 +64,18 @@ The backend is now organized into a clean, modular structure:
 ### 🤖 Available Models
 
 1. **XLM-RoBERTa Language Detector** ✅
-   - **Model**: `ZheYu03/xlm-r-langdetect-model`
+   - **Model**: [`ZheYu03/xlm-r-langdetect-model`](https://huggingface.co/ZheYu03/xlm-r-langdetect-model)
    - **Accuracy**: 97.9%
    - **Size**: 278M parameters
+   - **Base**: xlm-roberta-base
    - **Status**: Available and working
 
-2. **Language Model 2** 🚧
-   - **Status**: Template ready for implementation
-   - **Suggested**: `papluca/xlm-roberta-base-language-detection`
+2. **SongJuNN XLM-R Language Detector** ✅
+   - **Model**: [`SongJuNN/xlm-r-langdetect-model`](https://huggingface.co/SongJuNN/xlm-r-langdetect-model)
+   - **Accuracy**: 96.17%
+   - **Size**: 178M parameters
+   - **Base**: bert-base-multilingual-cased
+   - **Status**: Available and working
 
 3. **Language Model 3** 🚧
    - **Status**: Template ready for implementation  

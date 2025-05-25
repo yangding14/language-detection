@@ -36,9 +36,9 @@ class ModelRegistry:
             },
             "model-2": {
                 "class": PlaceholderModel1,
-                "display_name": "Language Model 2",
-                "description": "Coming soon - Additional language detection model",
-                "status": "coming_soon"
+                "display_name": "SongJuNN XLM-R Language Detector",
+                "description": "Fine-tuned XLM-RoBERTa model for language detection (96.17% accuracy)",
+                "status": "available"
             },
             "model-3": {
                 "class": PlaceholderModel2,
@@ -106,21 +106,34 @@ class LanguageDetector:
         
         # Comprehensive language code to name mapping
         self.language_names = {
-            'af': 'Afrikaans', 'ar': 'Arabic', 'bg': 'Bulgarian', 'bn': 'Bengali',
-            'ca': 'Catalan', 'cs': 'Czech', 'cy': 'Welsh', 'da': 'Danish',
-            'de': 'German', 'el': 'Greek', 'en': 'English', 'es': 'Spanish',
-            'et': 'Estonian', 'fa': 'Persian', 'fi': 'Finnish', 'fr': 'French',
-            'gu': 'Gujarati', 'he': 'Hebrew', 'hi': 'Hindi', 'hr': 'Croatian',
-            'hu': 'Hungarian', 'id': 'Indonesian', 'it': 'Italian', 'ja': 'Japanese',
-            'kn': 'Kannada', 'ko': 'Korean', 'lt': 'Lithuanian', 'lv': 'Latvian',
-            'mk': 'Macedonian', 'ml': 'Malayalam', 'mr': 'Marathi', 'ne': 'Nepali',
-            'nl': 'Dutch', 'no': 'Norwegian', 'pa': 'Punjabi', 'pl': 'Polish',
-            'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'sk': 'Slovak',
-            'sl': 'Slovenian', 'so': 'Somali', 'sq': 'Albanian', 'sv': 'Swedish',
-            'sw': 'Swahili', 'ta': 'Tamil', 'te': 'Telugu', 'th': 'Thai',
-            'tl': 'Filipino', 'tr': 'Turkish', 'uk': 'Ukrainian', 'ur': 'Urdu',
-            'vi': 'Vietnamese', 'zh': 'Chinese', 'zh-cn': 'Chinese (Simplified)',
-            'zh-tw': 'Chinese (Traditional)'
+            'af': 'Afrikaans', 'am': 'Amharic', 'ar': 'Arabic', 'as': 'Assamese', 
+            'az': 'Azerbaijani', 'be': 'Belarusian', 'bg': 'Bulgarian', 'bn': 'Bengali',
+            'br': 'Breton', 'bs': 'Bosnian', 'ca': 'Catalan', 'cs': 'Czech', 
+            'cy': 'Welsh', 'da': 'Danish', 'de': 'German', 'dz': 'Dzongkha',
+            'el': 'Greek', 'en': 'English', 'eo': 'Esperanto', 'es': 'Spanish',
+            'et': 'Estonian', 'eu': 'Basque', 'fa': 'Persian', 'fi': 'Finnish', 
+            'fr': 'French', 'fy': 'Frisian', 'ga': 'Irish', 'gd': 'Scottish Gaelic',
+            'gl': 'Galician', 'gu': 'Gujarati', 'ha': 'Hausa', 'he': 'Hebrew', 
+            'hi': 'Hindi', 'hr': 'Croatian', 'ht': 'Haitian Creole', 'hu': 'Hungarian',
+            'hy': 'Armenian', 'id': 'Indonesian', 'is': 'Icelandic', 'it': 'Italian', 
+            'ja': 'Japanese', 'jv': 'Javanese', 'ka': 'Georgian', 'kk': 'Kazakh',
+            'km': 'Khmer', 'kn': 'Kannada', 'ko': 'Korean', 'ku': 'Kurdish',
+            'ky': 'Kyrgyz', 'la': 'Latin', 'lb': 'Luxembourgish', 'lo': 'Lao',
+            'lt': 'Lithuanian', 'lv': 'Latvian', 'mg': 'Malagasy', 'mk': 'Macedonian', 
+            'ml': 'Malayalam', 'mn': 'Mongolian', 'mr': 'Marathi', 'ms': 'Malay',
+            'mt': 'Maltese', 'my': 'Myanmar (Burmese)', 'nb': 'Norwegian Bokmål',
+            'ne': 'Nepali', 'nl': 'Dutch', 'nn': 'Norwegian Nynorsk', 'no': 'Norwegian',
+            'oc': 'Occitan', 'or': 'Odia', 'pa': 'Punjabi', 'pl': 'Polish',
+            'ps': 'Pashto', 'pt': 'Portuguese', 'qu': 'Quechua', 'ro': 'Romanian', 
+            'ru': 'Russian', 'rw': 'Kinyarwanda', 'se': 'Northern Sami', 'si': 'Sinhala',
+            'sk': 'Slovak', 'sl': 'Slovenian', 'so': 'Somali', 'sq': 'Albanian',
+            'sr': 'Serbian', 'sv': 'Swedish', 'sw': 'Swahili', 'ta': 'Tamil', 
+            'te': 'Telugu', 'th': 'Thai', 'tl': 'Filipino', 'tr': 'Turkish',
+            'ug': 'Uyghur', 'uk': 'Ukrainian', 'ur': 'Urdu', 'vi': 'Vietnamese',
+            'vo': 'Volapük', 'wa': 'Walloon', 'xh': 'Xhosa', 'yi': 'Yiddish',
+            'yo': 'Yoruba', 'zh': 'Chinese', 'zh-cn': 'Chinese (Simplified)',
+            'zh-tw': 'Chinese (Traditional)', 'zh-hans': 'Chinese (Simplified)',
+            'zh-hant': 'Chinese (Traditional)', 'zu': 'Zulu'
         }
     
     def switch_model(self, model_key: str):
