@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Test script for the Zues0102 BERT Multilingual Language Detection Model
+Test script for Model B Dataset B - BERT + Enhanced Dataset
 
-This script tests the newly implemented zues0102/bert-base-multilingual-cased
-to ensure it works correctly within the language detection framework.
+This script tests the BERT based language detection model
+trained on the enhanced dataset, achieving the highest accuracy (99.85%).
 """
 
 import sys
@@ -15,15 +15,15 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from backend.language_detector import LanguageDetector
 
 
-def test_bert_model():
-    """Test the Zues0102 BERT Multilingual model implementation."""
-    print("🧪 Testing Zues0102 BERT Multilingual Language Detection Model")
+def test_model_b_dataset_b():
+    """Test the Model B Dataset B implementation."""
+    print("🧪 Testing Model B Dataset B - BERT + Enhanced Dataset")
     print("=" * 75)
     
     try:
-        # Initialize detector with the Zues0102 BERT model
-        detector = LanguageDetector(model_key="model-4")
-        print("✅ Successfully initialized Zues0102 BERT Multilingual model")
+        # Initialize detector with Model B Dataset B (highest accuracy)
+        detector = LanguageDetector(model_key="model-b-dataset-b")
+        print("✅ Successfully initialized Model B Dataset B")
         
         # Test texts in the 20 supported languages
         test_texts = [
@@ -49,7 +49,7 @@ def test_bert_model():
             ("Habari, unajehje?", "sw")  # Swahili
         ]
         
-        print("\n🔍 Running language detection tests:")
+        print("\n🔍 Running language detection tests on 20 supported languages:")
         print("-" * 75)
         
         correct_predictions = 0
@@ -91,7 +91,7 @@ def test_bert_model():
         for key, value in model_info.items():
             print(f"{key.title().replace('_', ' ')}: {value}")
         
-        print("🎉 Zues0102 BERT Multilingual model test completed successfully!")
+        print("🎉 Model B Dataset B test completed successfully!")
         
     except Exception as e:
         print(f"❌ Test failed: {str(e)}")
@@ -103,15 +103,15 @@ def test_bert_model():
 
 
 def test_all_models_comprehensive():
-    """Test and compare all four available models comprehensively."""
-    print("\n🔄 Comprehensive All-Models Comparison")
+    """Test and compare all four available model combinations."""
+    print("\n🔄 Comprehensive All-Model Combinations Comparison")
     print("=" * 75)
     
     models_to_test = [
-        ("xlm-roberta-langdetect", "ZheYu03 XLM-RoBERTa", "97.9%"),
-        ("model-2", "SongJuNN XLM-R", "96.17%"),
-        ("model-3", "Zues0102 XLM-R Papluca", "99.72%"),
-        ("model-4", "Zues0102 BERT Multilingual", "99.85%")
+        ("model-a-dataset-a", "Model A Dataset A", "XLM-RoBERTa + Standard", "97.9%"),
+        ("model-b-dataset-a", "Model B Dataset A", "BERT + Standard", "96.17%"),
+        ("model-a-dataset-b", "Model A Dataset B", "XLM-RoBERTa + Enhanced", "99.72%"),
+        ("model-b-dataset-b", "Model B Dataset B", "BERT + Enhanced", "99.85%")
     ]
     
     test_texts = [
@@ -121,15 +121,15 @@ def test_all_models_comprehensive():
         "Guten Tag, das ist ein Test auf Deutsch."
     ]
     
-    print("🧪 Testing with multiple sentences:")
+    print("🧪 Testing with multiple sentences across all model combinations:")
     print("-" * 75)
     
     try:
         results_summary = {}
         
-        for model_key, model_name, claimed_accuracy in models_to_test:
-            print(f"\n🤖 Testing {model_name} (Claimed: {claimed_accuracy})")
-            print("-" * 50)
+        for model_key, model_name, description, claimed_accuracy in models_to_test:
+            print(f"\n🤖 Testing {model_name} ({description}) - Claimed: {claimed_accuracy}")
+            print("-" * 60)
             
             try:
                 detector = LanguageDetector(model_key=model_key)
@@ -154,7 +154,7 @@ def test_all_models_comprehensive():
                 print(f"❌ {model_name}: {str(e)}")
                 results_summary[model_name] = f"Error: {str(e)}"
         
-        print(f"\n📊 All Models Testing Summary:")
+        print(f"\n📊 All Model Combinations Testing Summary:")
         print("-" * 75)
         for model_name, results in results_summary.items():
             if isinstance(results, str):
@@ -171,19 +171,61 @@ def test_all_models_comprehensive():
         return False
 
 
+def test_model_architecture():
+    """Test the model architecture information for Model B Dataset B."""
+    print("\n🏗️ Testing Model B Dataset B Architecture Information")
+    print("=" * 75)
+    
+    try:
+        detector = LanguageDetector(model_key="model-b-dataset-b")
+        model_info = detector.get_current_model_info()
+        
+        # Verify key architecture information
+        expected_info = {
+            "architecture": "BERT",
+            "dataset": "Dataset B",
+            "accuracy": "99.85%",
+            "model_size": "178M parameters"
+        }
+        
+        print("🔍 Verifying model architecture information:")
+        print("-" * 50)
+        
+        all_correct = True
+        for key, expected_value in expected_info.items():
+            actual_value = model_info.get(key, "Not found")
+            if actual_value == expected_value:
+                print(f"✅ {key}: {actual_value}")
+            else:
+                print(f"❌ {key}: Expected '{expected_value}', got '{actual_value}'")
+                all_correct = False
+        
+        if all_correct:
+            print("\n🎉 All architecture information verified successfully!")
+        else:
+            print("\n⚠️ Some architecture information mismatches found.")
+        
+        return all_correct
+        
+    except Exception as e:
+        print(f"❌ Architecture test failed: {str(e)}")
+        return False
+
+
 if __name__ == "__main__":
-    print("🚀 Starting Zues0102 BERT Multilingual Model Tests\n")
+    print("🚀 Starting Model B Dataset B Tests\n")
     
     # Run tests
-    test1_passed = test_bert_model()
+    test1_passed = test_model_b_dataset_b()
     test2_passed = test_all_models_comprehensive()
+    test3_passed = test_model_architecture()
     
     # Final results
     print("\n" + "=" * 75)
-    if test1_passed and test2_passed:
-        print("🎉 All tests passed! Zues0102 BERT Multilingual model is ready to use.")
+    if test1_passed and test2_passed and test3_passed:
+        print("🎉 All tests passed! Model B Dataset B is ready to use.")
         print("🏆 This model offers the highest accuracy (99.85%) of all available models!")
-        print("📝 Note: Supports 20 carefully selected languages for maximum precision.")
+        print("📝 Note: Optimized for 20 carefully selected languages for maximum precision.")
     else:
         print("❌ Some tests failed. Please check the implementation.")
         sys.exit(1) 

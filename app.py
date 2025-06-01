@@ -2,7 +2,7 @@ import gradio as gr
 from backend.language_detector import LanguageDetector
 
 def main():
-    # Initialize the language detector with default model
+    # Initialize the language detector with default model (Model A Dataset A)
     detector = LanguageDetector()
     
     # Create Gradio interface
@@ -30,7 +30,7 @@ def main():
             
             model_selector = gr.Dropdown(
                 choices=model_choices,
-                value="xlm-roberta-langdetect",
+                value="model-a-dataset-a",  # Default to Model A Dataset A
                 label="Choose Language Detection Model",
                 interactive=True
             )
@@ -236,6 +236,11 @@ def _format_model_info(model_info):
 **📊 Performance:**
 - Accuracy: {model_info.get('accuracy', 'N/A')}
 - Model Size: {model_info.get('model_size', 'N/A')}
+
+**🏗️ Architecture:**
+- Model Architecture: {model_info.get('architecture', 'N/A')}
+- Base Model: {model_info.get('base_model', 'N/A')}
+- Training Dataset: {model_info.get('dataset', 'N/A')}
 
 **🌐 Languages:** {model_info.get('languages_supported', 'N/A')}
 

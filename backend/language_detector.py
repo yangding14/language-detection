@@ -2,7 +2,15 @@
 Language Detection Backend
 
 This module provides the main LanguageDetector class and ModelRegistry
-for managing multiple language detection models.
+for managing multiple language detection models organized by architecture and dataset.
+
+Model Architecture:
+- Model A: XLM-RoBERTa based architectures  
+- Model B: BERT based architectures
+
+Training Datasets:
+- Dataset A: Standard multilingual language detection dataset
+- Dataset B: Enhanced/specialized language detection dataset
 """
 
 import logging
@@ -10,10 +18,13 @@ from typing import Dict, List, Any
 
 from .models import (
     BaseLanguageModel,
-    XLMRobertaLanguageDetector,
-    PlaceholderModel1,
-    PlaceholderModel2,
-    PlaceholderModel3
+    ModelADatasetA,
+    ModelBDatasetA,
+    ModelADatasetB, 
+    ModelBDatasetB,
+    get_all_model_configs,
+    get_language_name,
+    LANGUAGE_MAPPINGS
 )
 
 
@@ -21,38 +32,36 @@ class ModelRegistry:
     """
     Registry for managing available language detection models.
     
-    This class handles the registration and creation of language detection models.
-    Add new models here by importing them and adding them to the models dictionary.
+    This class handles the registration and creation of language detection models
+    organized by model architecture (A: XLM-RoBERTa, B: BERT) and training 
+    dataset (A: standard, B: enhanced).
     """
     
     def __init__(self):
         """Initialize the model registry with available models."""
-        self.models = {
-            "xlm-roberta-langdetect": {
-                "class": XLMRobertaLanguageDetector,
-                "display_name": "XLM-RoBERTa Language Detector",
-                "description": "High-accuracy multilingual language detection (97.9%)",
-                "status": "available"
-            },
-            "model-2": {
-                "class": PlaceholderModel1,
-                "display_name": "SongJuNN XLM-R Language Detector",
-                "description": "Fine-tuned XLM-RoBERTa model for language detection (96.17% accuracy)",
-                "status": "available"
-            },
-            "model-3": {
-                "class": PlaceholderModel2,
-                "display_name": "Zues0102 XLM-R Papluca Language Detector",
-                "description": "Ultra high-accuracy XLM-RoBERTa model for language detection (99.72% accuracy)",
-                "status": "available"
-            },
-            "model-4": {
-                "class": PlaceholderModel3,
-                "display_name": "Zues0102 BERT Multilingual Language Detector",
-                "description": "State-of-the-art BERT-based language detection (99.85% accuracy)",
-                "status": "available"
-            }
+        # Get model configurations from centralized config
+        self.model_configs = get_all_model_configs()
+        
+        # Map model keys to their implementation classes
+        self.model_classes = {
+            "model-a-dataset-a": ModelADatasetA,      # XLM-RoBERTa + Dataset A
+            "model-b-dataset-a": ModelBDatasetA,      # BERT + Dataset A  
+            "model-a-dataset-b": ModelADatasetB,      # XLM-RoBERTa + Dataset B
+            "model-b-dataset-b": ModelBDatasetB,      # BERT + Dataset B
         }
+        
+        # Build models registry by combining configs with classes
+        self.models = {}
+        
+        # Add the new organized models
+        for model_key, config in self.model_configs.items():
+            if model_key in self.model_classes:
+                self.models[model_key] = {
+                    "class": self.model_classes[model_key],
+                    "display_name": config["display_name"],
+                    "description": config["description"],
+                    "status": config["status"]
+                }
     
     def get_available_models(self) -> Dict[str, Dict[str, Any]]:
         """
@@ -89,52 +98,27 @@ class LanguageDetector:
     Main language detection class that orchestrates model predictions.
     
     This class provides a unified interface for language detection using
-    different models. It handles model switching and provides consistent
-    output formatting.
+    different model architectures and training datasets. It handles model 
+    switching and provides consistent output formatting.
     """
     
-    def __init__(self, model_key: str = "xlm-roberta-langdetect"):
+    def __init__(self, model_key: str = "model-a-dataset-a"):
         """
         Initialize the language detector.
         
         Args:
             model_key (str): Key of the model to use from the registry
+                - "model-a-dataset-a": XLM-RoBERTa + standard dataset
+                - "model-b-dataset-a": BERT + standard dataset  
+                - "model-a-dataset-b": XLM-RoBERTa + enhanced dataset
+                - "model-b-dataset-b": BERT + enhanced dataset
         """
         self.registry = ModelRegistry()
         self.current_model_key = model_key
         self.model = self.registry.create_model(model_key)
         
-        # Comprehensive language code to name mapping
-        self.language_names = {
-            'af': 'Afrikaans', 'am': 'Amharic', 'ar': 'Arabic', 'as': 'Assamese', 
-            'az': 'Azerbaijani', 'be': 'Belarusian', 'bg': 'Bulgarian', 'bn': 'Bengali',
-            'br': 'Breton', 'bs': 'Bosnian', 'ca': 'Catalan', 'cs': 'Czech', 
-            'cy': 'Welsh', 'da': 'Danish', 'de': 'German', 'dz': 'Dzongkha',
-            'el': 'Greek', 'en': 'English', 'eo': 'Esperanto', 'es': 'Spanish',
-            'et': 'Estonian', 'eu': 'Basque', 'fa': 'Persian', 'fi': 'Finnish', 
-            'fr': 'French', 'fy': 'Frisian', 'ga': 'Irish', 'gd': 'Scottish Gaelic',
-            'gl': 'Galician', 'gu': 'Gujarati', 'ha': 'Hausa', 'he': 'Hebrew', 
-            'hi': 'Hindi', 'hr': 'Croatian', 'ht': 'Haitian Creole', 'hu': 'Hungarian',
-            'hy': 'Armenian', 'id': 'Indonesian', 'is': 'Icelandic', 'it': 'Italian', 
-            'ja': 'Japanese', 'jv': 'Javanese', 'ka': 'Georgian', 'kk': 'Kazakh',
-            'km': 'Khmer', 'kn': 'Kannada', 'ko': 'Korean', 'ku': 'Kurdish',
-            'ky': 'Kyrgyz', 'la': 'Latin', 'lb': 'Luxembourgish', 'lo': 'Lao',
-            'lt': 'Lithuanian', 'lv': 'Latvian', 'mg': 'Malagasy', 'mk': 'Macedonian', 
-            'ml': 'Malayalam', 'mn': 'Mongolian', 'mr': 'Marathi', 'ms': 'Malay',
-            'mt': 'Maltese', 'my': 'Myanmar (Burmese)', 'nb': 'Norwegian Bokmål',
-            'ne': 'Nepali', 'nl': 'Dutch', 'nn': 'Norwegian Nynorsk', 'no': 'Norwegian',
-            'oc': 'Occitan', 'or': 'Odia', 'pa': 'Punjabi', 'pl': 'Polish',
-            'ps': 'Pashto', 'pt': 'Portuguese', 'qu': 'Quechua', 'ro': 'Romanian', 
-            'ru': 'Russian', 'rw': 'Kinyarwanda', 'se': 'Northern Sami', 'si': 'Sinhala',
-            'sk': 'Slovak', 'sl': 'Slovenian', 'so': 'Somali', 'sq': 'Albanian',
-            'sr': 'Serbian', 'sv': 'Swedish', 'sw': 'Swahili', 'ta': 'Tamil', 
-            'te': 'Telugu', 'th': 'Thai', 'tl': 'Filipino', 'tr': 'Turkish',
-            'ug': 'Uyghur', 'uk': 'Ukrainian', 'ur': 'Urdu', 'vi': 'Vietnamese',
-            'vo': 'Volapük', 'wa': 'Walloon', 'xh': 'Xhosa', 'yi': 'Yiddish',
-            'yo': 'Yoruba', 'zh': 'Chinese', 'zh-cn': 'Chinese (Simplified)',
-            'zh-tw': 'Chinese (Traditional)', 'zh-hans': 'Chinese (Simplified)',
-            'zh-hant': 'Chinese (Traditional)', 'zu': 'Zulu'
-        }
+        # Use centralized language mappings
+        self.language_names = LANGUAGE_MAPPINGS
     
     def switch_model(self, model_key: str):
         """
@@ -206,17 +190,14 @@ class LanguageDetector:
         main_language_code = top_prediction['language_code']
         main_confidence = top_prediction['confidence']
         
-        # Get human-readable language name
-        main_language_name = self.language_names.get(
-            main_language_code, 
-            f"Unknown ({main_language_code})"
-        )
+        # Get human-readable language name using centralized function
+        main_language_name = get_language_name(main_language_code)
         
         # Format top predictions (limit to 5)
         top_predictions = []
         for pred in predictions[:5]:
             lang_code = pred['language_code']
-            lang_name = self.language_names.get(lang_code, f"Unknown ({lang_code})")
+            lang_name = get_language_name(lang_code)
             top_predictions.append({
                 'language': lang_name,
                 'language_code': lang_code,
@@ -249,14 +230,14 @@ class LanguageDetector:
         """
         supported_codes = self.model.get_supported_languages()
         return {
-            code: self.language_names.get(code, f"Unknown ({code})")
+            code: get_language_name(code)
             for code in supported_codes
         }
 
 
 # Example usage and testing
 if __name__ == "__main__":
-    # Initialize detector with default model
+    # Initialize detector with default model (Model A Dataset A)
     detector = LanguageDetector()
     
     # Test with sample texts
@@ -267,8 +248,8 @@ if __name__ == "__main__":
         "Guten Tag, wie geht es Ihnen?"
     ]
     
-    print("Language Detection Test")
-    print("=" * 50)
+    print("Language Detection Test - Model A Dataset A")
+    print("=" * 60)
     
     for text in test_texts:
         try:

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Test script for the Zues0102 XLM-R Papluca Language Detection Model
+Test script for Model A Dataset A - XLM-RoBERTa + Standard Dataset
 
-This script tests the newly implemented zues0102/xlmr-papluca-model
-to ensure it works correctly within the language detection framework.
+This script tests the XLM-RoBERTa based language detection model
+trained on the standard multilingual dataset to ensure it works correctly.
 """
 
 import sys
@@ -15,15 +15,15 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from backend.language_detector import LanguageDetector
 
 
-def test_zues_model():
-    """Test the Zues0102 model implementation."""
-    print("🧪 Testing Zues0102 XLM-R Papluca Language Detection Model")
-    print("=" * 70)
+def test_model_a_dataset_a():
+    """Test the Model A Dataset A implementation."""
+    print("🧪 Testing Model A Dataset A - XLM-RoBERTa + Standard Dataset")
+    print("=" * 75)
     
     try:
-        # Initialize detector with the Zues0102 model
-        detector = LanguageDetector(model_key="model-3")
-        print("✅ Successfully initialized Zues0102 XLM-R Papluca model")
+        # Initialize detector with Model A Dataset A
+        detector = LanguageDetector(model_key="model-a-dataset-a")
+        print("✅ Successfully initialized Model A Dataset A")
         
         # Test texts in different languages
         test_texts = [
@@ -42,7 +42,7 @@ def test_zues_model():
         ]
         
         print("\n🔍 Running language detection tests:")
-        print("-" * 70)
+        print("-" * 75)
         
         correct_predictions = 0
         total_predictions = len(test_texts)
@@ -63,7 +63,7 @@ def test_zues_model():
                 else:
                     status = "❌"
                 
-                print(f"{status} Text: {text[:35]}{'...' if len(text) > 35 else ''}")
+                print(f"{status} Text: {text[:40]}{'...' if len(text) > 40 else ''}")
                 print(f"   Expected: {expected_lang} | Predicted: {predicted_lang} ({language_name})")
                 print(f"   Confidence: {confidence:.4f}")
                 print()
@@ -79,22 +79,12 @@ def test_zues_model():
         
         # Test model info
         print("\n📋 Model Information:")
-        print("-" * 70)
+        print("-" * 75)
         model_info = detector.get_current_model_info()
         for key, value in model_info.items():
             print(f"{key.title().replace('_', ' ')}: {value}")
         
-        # Test available models
-        print("\n🔧 Available Models:")
-        print("-" * 70)
-        available_models = detector.get_available_models()
-        for key, info in available_models.items():
-            status = "✅" if info["status"] == "available" else "🚧"
-            print(f"{status} {info['display_name']} ({key})")
-            print(f"   {info['description']}")
-            print()
-        
-        print("🎉 Zues0102 XLM-R Papluca model test completed successfully!")
+        print("🎉 Model A Dataset A test completed successfully!")
         
     except Exception as e:
         print(f"❌ Test failed: {str(e)}")
@@ -105,59 +95,59 @@ def test_zues_model():
     return True
 
 
-def test_model_comparison():
-    """Test and compare all four available models."""
-    print("\n🔄 Testing Model Comparison")
-    print("=" * 70)
-    
-    models_to_test = [
-        ("xlm-roberta-langdetect", "ZheYu03 XLM-RoBERTa"),
-        ("model-2", "SongJuNN XLM-R"),
-        ("model-3", "Zues0102 XLM-R Papluca"),
-        ("model-4", "Zues0102 BERT Multilingual")
-    ]
-    
-    test_text = "Hello, this is a test sentence for language detection."
-    
-    print(f"🧪 Test Text: {test_text}")
-    print("-" * 70)
+def test_model_architecture():
+    """Test the model architecture information."""
+    print("\n🏗️ Testing Model Architecture Information")
+    print("=" * 75)
     
     try:
-        for model_key, model_name in models_to_test:
-            try:
-                detector = LanguageDetector(model_key=model_key)
-                result = detector.detect_language(test_text)
-                
-                print(f"✅ {model_name}")
-                print(f"   Language: {result['language']} ({result['language_code']})")
-                print(f"   Confidence: {result['confidence']:.4f}")
-                print(f"   Model: {result['metadata']['model_name']}")
-                print()
-                
-            except Exception as e:
-                print(f"❌ {model_name}: {str(e)}")
-                print()
+        detector = LanguageDetector(model_key="model-a-dataset-a")
+        model_info = detector.get_current_model_info()
         
-        print("🎉 Model comparison test completed successfully!")
-        return True
+        # Verify key architecture information
+        expected_info = {
+            "architecture": "XLM-RoBERTa",
+            "dataset": "Dataset A",
+            "accuracy": "97.9%",
+            "model_size": "278M parameters"
+        }
+        
+        print("🔍 Verifying model architecture information:")
+        print("-" * 50)
+        
+        all_correct = True
+        for key, expected_value in expected_info.items():
+            actual_value = model_info.get(key, "Not found")
+            if actual_value == expected_value:
+                print(f"✅ {key}: {actual_value}")
+            else:
+                print(f"❌ {key}: Expected '{expected_value}', got '{actual_value}'")
+                all_correct = False
+        
+        if all_correct:
+            print("\n🎉 All architecture information verified successfully!")
+        else:
+            print("\n⚠️ Some architecture information mismatches found.")
+        
+        return all_correct
         
     except Exception as e:
-        print(f"❌ Model comparison test failed: {str(e)}")
+        print(f"❌ Architecture test failed: {str(e)}")
         return False
 
 
 if __name__ == "__main__":
-    print("🚀 Starting Zues0102 XLM-R Papluca Model Tests\n")
+    print("🚀 Starting Model A Dataset A Tests\n")
     
     # Run tests
-    test1_passed = test_zues_model()
-    test2_passed = test_model_comparison()
+    test1_passed = test_model_a_dataset_a()
+    test2_passed = test_model_architecture()
     
     # Final results
-    print("\n" + "=" * 70)
+    print("\n" + "=" * 75)
     if test1_passed and test2_passed:
-        print("🎉 All tests passed! Zues0102 XLM-R Papluca model is ready to use.")
-        print("💡 This model offers the highest accuracy (99.72%) of all available models!")
+        print("🎉 All tests passed! Model A Dataset A is ready to use.")
+        print("⚖️ This model offers balanced performance with robust cross-lingual capabilities!")
     else:
         print("❌ Some tests failed. Please check the implementation.")
         sys.exit(1) 
