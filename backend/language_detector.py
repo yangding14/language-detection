@@ -42,15 +42,15 @@ class ModelRegistry:
             },
             "model-3": {
                 "class": PlaceholderModel2,
-                "display_name": "Language Model 3", 
-                "description": "Coming soon - Additional language detection model",
-                "status": "coming_soon"
+                "display_name": "Zues0102 XLM-R Papluca Language Detector",
+                "description": "Ultra high-accuracy XLM-RoBERTa model for language detection (99.72% accuracy)",
+                "status": "available"
             },
             "model-4": {
                 "class": PlaceholderModel3,
-                "display_name": "Language Model 4",
-                "description": "Coming soon - Additional language detection model", 
-                "status": "coming_soon"
+                "display_name": "Zues0102 BERT Multilingual Language Detector",
+                "description": "State-of-the-art BERT-based language detection (99.85% accuracy)",
+                "status": "available"
             }
         }
     
