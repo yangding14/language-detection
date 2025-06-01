@@ -57,7 +57,7 @@ class ModelADatasetB(BaseLanguageModel):
             self.classifier = pipeline(
                 "text-classification",
                 model=self.model_name,
-                device=-1,  # Use CPU (-1) for compatibility; change to 0 for GPU
+                device=0,
                 top_k=None  # Return all scores
             )
             logging.info(f"Successfully loaded {self.config['display_name']} ({self.model_name})")
