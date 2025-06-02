@@ -27,11 +27,11 @@ MODEL_CONFIGURATIONS = {
         "accuracy": "97.9%",
         "model_size": "278M parameters",
         "training_epochs": 10,
-        "languages_supported": 60,
-        "description": "High-performance XLM-RoBERTa based language detection model fine-tuned on standard multilingual dataset. Delivers reliable 97.9% accuracy across 60+ languages with robust cross-lingual capabilities.",
+        "languages_supported": 100,
+        "description": "High-performance XLM-RoBERTa based language detection model fine-tuned on standard multilingual dataset. Delivers reliable 97.9% accuracy across 100+ languages with robust cross-lingual capabilities.",
         "training_details": "Fine-tuned XLM-RoBERTa base model with AdamW optimizer, 10 epochs training on comprehensive multilingual language detection dataset",
         "use_cases": "General-purpose language detection, multilingual content processing, cross-lingual text analysis",
-        "strengths": "Excellent multilingual performance, robust cross-lingual transfer, proven reliability",
+        "strengths": "Excellent multilingual performance, robust cross-lingual transfer, proven reliability, comprehensive language coverage",
         "limitations": "Higher computational requirements, moderate inference speed",
         "status": "available"
     },
@@ -131,12 +131,16 @@ LANGUAGE_MAPPINGS = {
 # Model-specific language support
 MODEL_LANGUAGE_SUPPORT = {
     "model-a-dataset-a": [
-        'af', 'ar', 'bg', 'bn', 'ca', 'cs', 'cy', 'da', 'de', 'el',
-        'en', 'es', 'et', 'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr',
-        'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lt', 'lv', 'mk', 'ml',
-        'mr', 'ne', 'nl', 'no', 'pa', 'pl', 'pt', 'ro', 'ru', 'sk',
-        'sl', 'so', 'sq', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr',
-        'uk', 'ur', 'vi', 'zh'
+        'af', 'am', 'ar', 'as', 'az', 'be', 'bg', 'bn', 'br', 'bs', 'ca', 
+        'cs', 'cy', 'da', 'de', 'dz', 'el', 'en', 'eo', 'es', 'et', 'eu', 
+        'fa', 'fi', 'fr', 'fy', 'ga', 'gd', 'gl', 'gu', 'ha', 'he', 'hi', 
+        'hr', 'ht', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'jv', 'ka', 'kk', 
+        'km', 'kn', 'ko', 'ku', 'ky', 'la', 'lb', 'lo', 'lt', 'lv', 'mg', 
+        'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my', 'nb', 'ne', 'nl', 'nn', 
+        'no', 'oc', 'or', 'pa', 'pl', 'ps', 'pt', 'qu', 'ro', 'ru', 'rw', 
+        'se', 'si', 'sk', 'sl', 'so', 'sq', 'sr', 'sv', 'sw', 'ta', 'te', 
+        'th', 'tl', 'tr', 'ug', 'uk', 'ur', 'vi', 'vo', 'wa', 'xh', 'yi', 
+        'yo', 'zh', 'zu'
     ],
     
     "model-b-dataset-a": [

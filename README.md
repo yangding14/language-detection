@@ -73,8 +73,8 @@ The system is organized around two dimensions:
    - **Training**: Dataset A (standard multilingual)
    - **Accuracy**: 97.9%
    - **Size**: 278M parameters
-   - **Languages**: 60+ languages
-   - **Strengths**: Balanced performance, robust cross-lingual capabilities
+   - **Languages**: 100+ languages
+   - **Strengths**: Balanced performance, robust cross-lingual capabilities, comprehensive language coverage
    - **Use Cases**: General-purpose language detection, multilingual content processing
 
 2. **Model B Dataset A** - BERT + Standard Dataset ✅
@@ -164,7 +164,7 @@ The project includes comprehensive test suites:
 
 The models support different language sets based on their training:
 
-- **Model A/B + Dataset A**: 60-100+ languages including major European, Asian, African, and other world languages
+- **Model A/B + Dataset A**: 100+ languages including major European, Asian, African, and other world languages based on the CC-100 dataset
 - **Model A/B + Dataset B**: 20 carefully selected high-performance languages (Arabic, Bulgarian, German, Greek, English, Spanish, French, Hindi, Italian, Japanese, Dutch, Polish, Portuguese, Russian, Swahili, Thai, Turkish, Urdu, Vietnamese, Chinese)
 
 ## 📊 Model Comparison
@@ -175,7 +175,7 @@ The models support different language sets based on their training:
 | **Dataset** | Standard | Standard | Enhanced | Enhanced |
 | **Accuracy** | 97.9% | 96.17% | 99.72% | **99.85%** 🏆 |
 | **Model Size** | 278M | 178M | 278M | 178M |
-| **Languages** | 60+ | 100+ | 20 (curated) | 20 (curated) |
+| **Languages** | 100+ | 100+ | 20 (curated) | 20 (curated) |
 | **Training Loss** | N/A | N/A | 0.0176 | **0.0125** |
 | **Speed** | Moderate | **Fast** | Moderate | **Fast** |
 | **Memory Usage** | Higher | **Lower** | Higher | **Lower** |
@@ -185,7 +185,7 @@ The models support different language sets based on their training:
 
 - **🏆 Model B Dataset B**: Choose for maximum accuracy on 20 core languages (99.85%)
 - **🔬 Model A Dataset B**: Choose for ultra-high accuracy on 20 core languages (99.72%)
-- **⚖️ Model A Dataset A**: Choose for balanced performance and reliability (97.9%)
+- **⚖️ Model A Dataset A**: Choose for balanced performance and comprehensive language coverage (97.9%)
 - **⚡ Model B Dataset A**: Choose for fast inference and broad language coverage (96.17%)
 
 ## 🔧 Configuration
