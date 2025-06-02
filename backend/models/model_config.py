@@ -66,12 +66,12 @@ MODEL_CONFIGURATIONS = {
         "model_size": "278M parameters", 
         "training_epochs": 10,
         "training_loss": 0.0176,
-        "languages_supported": 100,
-        "description": "Ultra high-accuracy XLM-RoBERTa model fine-tuned on enhanced dataset. Achieves exceptional 99.72% accuracy with comprehensive multilingual support and state-of-the-art performance.",
+        "languages_supported": 20,
+        "description": "Ultra high-accuracy XLM-RoBERTa model fine-tuned on enhanced dataset. Achieves exceptional 99.72% accuracy with support for 20 carefully selected high-performance languages and state-of-the-art performance.",
         "training_details": "Advanced fine-tuning of XLM-RoBERTa on enhanced dataset with specialized training procedures, achieving loss of 0.0176",
         "use_cases": "Research applications, high-precision language detection, critical accuracy requirements",
-        "strengths": "Exceptional accuracy (99.72%), comprehensive language support, state-of-the-art results",
-        "limitations": "Higher computational requirements, larger model size",
+        "strengths": "Exceptional accuracy (99.72%), focused language support, state-of-the-art results",
+        "limitations": "Higher computational requirements, limited to 20 languages",
         "status": "available"
     },
     
@@ -153,16 +153,8 @@ MODEL_LANGUAGE_SUPPORT = {
     ],
     
     "model-a-dataset-b": [
-        'af', 'am', 'ar', 'as', 'az', 'be', 'bg', 'bn', 'br', 'bs', 'ca', 
-        'cs', 'cy', 'da', 'de', 'dz', 'el', 'en', 'eo', 'es', 'et', 'eu', 
-        'fa', 'fi', 'fr', 'fy', 'ga', 'gd', 'gl', 'gu', 'ha', 'he', 'hi', 
-        'hr', 'ht', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'jv', 'ka', 'kk', 
-        'km', 'kn', 'ko', 'ku', 'ky', 'la', 'lb', 'lo', 'lt', 'lv', 'mg', 
-        'mk', 'ml', 'mn', 'mr', 'ms', 'mt', 'my', 'nb', 'ne', 'nl', 'nn', 
-        'no', 'oc', 'or', 'pa', 'pl', 'ps', 'pt', 'qu', 'ro', 'ru', 'rw', 
-        'se', 'si', 'sk', 'sl', 'so', 'sq', 'sr', 'sv', 'sw', 'ta', 'te', 
-        'th', 'tl', 'tr', 'ug', 'uk', 'ur', 'vi', 'vo', 'wa', 'xh', 'yi', 
-        'yo', 'zh', 'zu'
+        'ar', 'bg', 'de', 'el', 'en', 'es', 'fr', 'hi', 'it', 'ja',
+        'nl', 'pl', 'pt', 'ru', 'sw', 'th', 'tr', 'ur', 'vi', 'zh'
     ],
     
     "model-b-dataset-b": [

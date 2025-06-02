@@ -92,8 +92,8 @@ The system is organized around two dimensions:
    - **Accuracy**: 99.72%
    - **Size**: 278M parameters
    - **Training Loss**: 0.0176
-   - **Languages**: 100+ languages
-   - **Strengths**: Exceptional accuracy, comprehensive language support, state-of-the-art results
+   - **Languages**: 20 carefully selected languages
+   - **Strengths**: Exceptional accuracy, focused language support, state-of-the-art results
    - **Use Cases**: Research applications, high-precision detection, critical accuracy requirements
 
 4. **Model B Dataset B** - BERT + Enhanced Dataset ✅
@@ -165,8 +165,7 @@ The project includes comprehensive test suites:
 The models support different language sets based on their training:
 
 - **Model A/B + Dataset A**: 60-100+ languages including major European, Asian, African, and other world languages
-- **Model A + Dataset B**: 100+ languages with ultra-high accuracy
-- **Model B + Dataset B**: 20 carefully selected high-performance languages (Arabic, Bulgarian, German, Greek, English, Spanish, French, Hindi, Italian, Japanese, Dutch, Polish, Portuguese, Russian, Swahili, Thai, Turkish, Urdu, Vietnamese, Chinese)
+- **Model A/B + Dataset B**: 20 carefully selected high-performance languages (Arabic, Bulgarian, German, Greek, English, Spanish, French, Hindi, Italian, Japanese, Dutch, Polish, Portuguese, Russian, Swahili, Thai, Turkish, Urdu, Vietnamese, Chinese)
 
 ## 📊 Model Comparison
 
@@ -176,7 +175,7 @@ The models support different language sets based on their training:
 | **Dataset** | Standard | Standard | Enhanced | Enhanced |
 | **Accuracy** | 97.9% | 96.17% | 99.72% | **99.85%** 🏆 |
 | **Model Size** | 278M | 178M | 278M | 178M |
-| **Languages** | 60+ | 100+ | 100+ | 20 (curated) |
+| **Languages** | 60+ | 100+ | 20 (curated) | 20 (curated) |
 | **Training Loss** | N/A | N/A | 0.0176 | **0.0125** |
 | **Speed** | Moderate | **Fast** | Moderate | **Fast** |
 | **Memory Usage** | Higher | **Lower** | Higher | **Lower** |
@@ -185,7 +184,7 @@ The models support different language sets based on their training:
 ### 🎯 Model Selection Guide
 
 - **🏆 Model B Dataset B**: Choose for maximum accuracy on 20 core languages (99.85%)
-- **🔬 Model A Dataset B**: Choose for ultra-high accuracy with broad language support (99.72%)
+- **🔬 Model A Dataset B**: Choose for ultra-high accuracy on 20 core languages (99.72%)
 - **⚖️ Model A Dataset A**: Choose for balanced performance and reliability (97.9%)
 - **⚡ Model B Dataset A**: Choose for fast inference and broad language coverage (96.17%)
 
